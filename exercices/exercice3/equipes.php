@@ -13,7 +13,7 @@
       </tr>
       <?php
         require('ctrl.php');
-        // A compléter....
+        
       ?>
       </table>
     </div>
