@@ -1,0 +1,21 @@
+/**  {
+  margin:0px;
+  padding:0px;
+  border:0px;
+}*/
+
+body {
+  background-color: #A0A0A0;
+  text-align:center;
+}
+
+#conteneur {
+  background-color: white;
+  width: 45em;
+  height: auto;
+  margin: auto; /* pour centrer le conteneur */
+  text-align: left;
+  border: 2px solid green;
+  padding: 1em 2em;
+  font-family: Verdana, Arial, serif;
+}
