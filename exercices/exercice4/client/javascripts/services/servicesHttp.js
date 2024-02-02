@@ -5,7 +5,7 @@
  * @version 1.0 / 20-SEP-2013
  */
 
-var BASE_URL = "mettez ici l'adresse du PHP que vous souhaitez appeler";
+var BASE_URL = "/serveur/serveur.php";
 
 /**
  * Fonction permettant de charger les données d'équipe.

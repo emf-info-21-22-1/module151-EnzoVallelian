@@ -5,4 +5,5 @@
 			echo '<equipe><id>7</id><nom>HC Davos</nom></equipe>';
 			echo '<equipe><id>8</id><nom>Genève-Servette</nom></equipe>';
 			echo '</equipes>';
+			
 ?>
