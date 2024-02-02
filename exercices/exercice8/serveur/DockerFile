@@ -2,5 +2,8 @@
 FROM php:apache
 # Installer les extensions PDO MySQL
 RUN docker-php-ext-install pdo pdo_mysql
+
+COPY . /var/www/html/
+
 # Exposer le port 80 du conteneur
 EXPOSE 80
