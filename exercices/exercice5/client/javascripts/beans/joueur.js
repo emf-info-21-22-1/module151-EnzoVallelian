@@ -34,7 +34,15 @@ Joueur.prototype.setPoints = function(points) {
 Joueur.prototype.toString = function () {
   return this.nom;
 };
-
+Joueur.prototype.setPk = function(pk) {
+  this.pk = pk;
+};
+Joueur.prototype.setNom = function(nom) {
+  this.nom = nom;
+};
+Joueur.prototype.setPoints = function(points) {
+  this.points = points;
+};
 /**
  * Retourne le nombre de points du joueur
  * @returns Le nombre de points du joueur

@@ -12,10 +12,10 @@
  * @param {type} jqXHR
  */
 function chargerTeamSuccess(data, text, jqXHR) {
-	// Appelé lorsque la liste des équipes est reçue
+    // Appelé lorsque la liste des équipes est reçue
     var cmbEquipes = document.getElementById("cmbEquipes");
     cmbEquipes.options.length = 0;
-    $(data).find("equipe").each(function() {
+    $(data).find("equipe").each(function () {
         var equipe = new Equipe();
         equipe.setPk($(this).find("id").text());
         equipe.setNom($(this).find("nom").text());
@@ -30,10 +30,17 @@ function chargerTeamSuccess(data, text, jqXHR) {
  * @param {type} jqXHR
  */
 function chargerPlayerSuccess(data, text, jqXHR) {
-	// Appelé lorsque la liste des joueurs est reçue
+    // Appelé lorsque la liste des joueurs est reçue
     var cmbJoueurs = document.getElementById("cmbJoueurs");
-	// A COMPLETER!!! selon la logique suivante:
-	// cmbJoueurs.options[cmbJoueurs.options.length] = new Option(<ce qui sera affiché>, <la valeur de la cellule>));
+    // A COMPLETER!!! selon la logique suivante:
+    cmbJoueurs.options.length = 0;
+    $(data).find("joueur").each(function () {
+        var joueur = new Joueur();
+        joueur.setPk($(this).find("id").text());
+        joueur.setNom($(this).find("nom").text());
+        joueur.setPoints($(this).find("points").text());
+        cmbJoueurs.options[cmbJoueurs.options.length] = new Option(joueur, JSON.stringify(joueur));
+    });
 }
 
 /**
@@ -59,31 +66,31 @@ function chargerPlayerError(request, status, error) {
 /**
  * Méthode "start" appelée après le chargement complet de la page
  */
-$(document).ready(function() {
+$(document).ready(function () {
     var butLoad = $("#displayTeams");
     var cmbEquipes = $("#cmbEquipes");
     var cmbJoueurs = $("#cmbJoueurs");
     var equipe = '';
     var joueur = '';
-    $.getScript("javascripts/beans/equipe.js", function() {
+    $.getScript("javascripts/beans/equipe.js", function () {
         console.log("equipe.js chargé !");
     });
-    $.getScript("javascripts/beans/joueur.js", function() {
+    $.getScript("javascripts/beans/joueur.js", function () {
         console.log("joueur.js chargé !");
     });
-    $.getScript("javascripts/services/servicesHttp.js", function() {
+    $.getScript("javascripts/services/servicesHttp.js", function () {
         console.log("servicesHttp.js chargé !");
         chargerTeam(chargerTeamSuccess, chargerTeamError);
     });
 
-	// Ce qui se passe lorsque l'on sélectionne une équipe
-    cmbEquipes.change(function(event) {
+    // Ce qui se passe lorsque l'on sélectionne une équipe
+    cmbEquipes.change(function (event) {
         equipe = this.options[this.selectedIndex].value;
         chargerPlayers(JSON.parse(equipe).pk, chargerPlayerSuccess, chargerPlayerError);
     });
-	
-	// Ce qui se passe lorsque l'on sélectionne une joueur
-    cmbJoueurs.change(function(event) {
+
+    // Ce qui se passe lorsque l'on sélectionne une joueur
+    cmbJoueurs.change(function (event) {
         joueur = this.options[this.selectedIndex].value;
         alert(JSON.parse(joueur).nom + ": " + JSON.parse(joueur).points + " points");
     });
