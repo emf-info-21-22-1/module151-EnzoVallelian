@@ -1,9 +1,21 @@
 <?php
-class Ctrl{
+class Ctrl
+{
 
-    public function __construct(){
+    public function __construct()
+    {
+        include_once("joueurs.php");
+        include_once("equipe.php");
+
+
     }
-    public function Ctrl(){}
+
+    public function Ctrl()
+    {
+
+
+
+    }
 
 }
 

@@ -16,7 +16,6 @@ class Connexion
 
     private function __construct()
     {
-
         try {
             $this->pdo = new PDO(
                 DB_TYPE . ":host=" . DB_HOST . ";port=3306;dbname=" . DB_NAME,
@@ -27,12 +26,12 @@ class Connexion
                     PDO::ATTR_PERSISTENT => true
                 )
             );
+            echo "connexion réussi";
         } catch (PDOException $e) {
             print "Erreur !:" . $e->getMessage() . "";
+            echo "connexion rate";
             die();
         }
-
     }
-    
 }
 ?>
