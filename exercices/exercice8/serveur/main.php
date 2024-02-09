@@ -6,11 +6,11 @@ include_once('ctrl/JoueurCtrl.php');
 switch ($_GET['action']) {
     case 'equipe':
         $equipes = new EquipeCtrl();
-        echo $equipes->getEquipesInXML();
+        echo $equipes->getEquipesXML();
         break;
     case 'joueur':
         $joueurs = new JoueurCtrl();
-        echo $joueurs->getJoueursInXML($_GET['equipeId']);
+        echo $joueurs->getJoueursXML($_GET['equipeId']);
         break;
 }
 ?>
