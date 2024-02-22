@@ -44,7 +44,7 @@
 		*/		
 		public function Add($nom, $langue)
 		{
-			$query = "INSERT INTO T_Depute (Nom, Langue) values(:nom, :langue)";
+			$query = "INSERT INTO t_depute (Nom, Langue) values(:nom, :langue)";
 			$params = array('nom' => $nom, 'langue' => $langue);
 			$res = connexion::getInstance()->ExecuteQuery($query, $params);
 			return connexion::getInstance()->GetLastId('T_Depute');		
@@ -60,9 +60,10 @@
 		*/	
 		public function Update($pkDepute, $nom, $langue)
 		{
-			$query = "UPDATE T_Depute set Nom = :nom, Langue = :langue where PK_Depute = :pkDepute";
+			$query = "UPDATE t_depute set Nom = :nom, Langue = :langue where PK_Depute = :pkDepute";
 			$params = array('nom' => $nom, 'langue' => $langue, 'pkDepute' => $pkDepute);
 			$res = connexion::getInstance()->ExecuteQuery($query, $params);
+			echo "fin res";
 			if ($res > 0)
 			{
 				return 'True';
@@ -80,7 +81,7 @@
 		*/		
 		public function Delete($pkDepute)
 		{
-			$query = "DELETE from T_Depute where PK_Depute = :pkDepute";
+			$query = "DELETE from t_depute where PK_Depute = :pkDepute";
 			$params = array('pkDepute' => $pkDepute);
 			$res = connexion::getInstance()->ExecuteQuery($query, $params);
 			if ($res > 0)

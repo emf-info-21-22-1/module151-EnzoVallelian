@@ -27,12 +27,16 @@
 				break;
 			case 'PUT':
 				parse_str(file_get_contents("php://input"), $vars);
+				var_dump($vars);
 				if (isset($vars['Langue']) and isset($vars['Nom']) and isset($vars['PK_Depute']))
 				{
+					
 					$deputeBD = new deputesBDManager();
 					echo $deputeBD->Update($vars['PK_Depute'], $vars['Nom'], $vars['Langue']);
+					//echo Update($vars['PK_Depute'], $vars['Nom'], $vars['Langue']);
 				}
 				else{
+					
 					echo 'Paramètre PK_Depute, Langue ou Nom manquant';
 				}
 				break;

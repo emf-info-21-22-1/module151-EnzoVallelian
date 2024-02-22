@@ -83,6 +83,7 @@ class connexion {
         try {
             $queryPrepared = $this->pdo->prepare($query);
             $queryRes = $queryPrepared->execute($params);
+            
             return $queryRes;
         } catch (PDOException $e) {
             print "Erreur !: " . $e->getMessage() . "<br/>";
