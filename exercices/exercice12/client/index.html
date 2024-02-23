@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="fr">
+    <head>
+        <title>Livre d'or</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="stylesheets/main.css" />
+    </head>
+    <body>
+        <div id="conteneur">
+            <h1>Mon livre d'or</h1>
+
+			<h2>Signer le livre d'or</h2>
+			<div id="form"> 
+			Auteur <input type="text" name="txtAuteur" id="txtAuteur">
+			Message <input type="text" name="txtMessage" id="txtMessage">
+			<button id="ajouter">Ajouter!</button>
+		</div>
+			
+            <h2>Messages</h2>
+            <table id="tableContent" border= "1">
+                
+                    <tr bgcolor="#E8E8E8">
+                        <td>Auteur</td>
+                        <td>Message</td>
+                    </tr>
+                
+            </table>
+        </div>
+    </body>
+</html>
+<script type="text/javascript" src="javascripts/helpers/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="javascripts/controllers/indexCtrl.js"></script>
+
