@@ -1,26 +1,31 @@
 
 
-var BASE_URL = "http://localhost:8082/";
 // httpService.js
+var BASE_URL = "http://localhost:8082/";
+
 function login(username, password, successCallback, errorCallback) {
+
+    let data = {
+        action: "login",
+        username: username,
+        password: password
+    }
+
     // Envoi de la requête POST via AJAX
     $.ajax({
         type: "POST",
         url: BASE_URL + "server.php",
-        data: {
-            "action": "checkUser",
-            "username": username,
-            "password": password,
-           
-        },
-        contentType: "application/json", xhrFields: {
+        contentType: "application/json",
+        dataType:"json",
+        data: JSON.stringify(data),
+        xhrFields: {
             withCredentials: true
         },
-
         success: successCallback,
         error: errorCallback
     });
 }
+
 
 /**
  * Fonction permettant de créer un utilisateur.
@@ -30,15 +35,19 @@ function login(username, password, successCallback, errorCallback) {
  * @param {function} errorCallback Fonction de callback en cas d'erreur de la requête.
  */
 function createUserAjax(username, passwd, successCallback, errorCallback) {
+
+    let data = {
+        action: "createUser",
+        username: username,
+        password: password
+    }
+
     $.ajax({
         type: "POST",
-        dataType: "JSON",
+        dataType: "json",
         url: BASE_URL + "login.php",
-        data: {
-            "action": "createUser",
-            "username": username,
-            "password": passwd
-        },
+        contentType: "application/json",
+        data: JSON.stringify(data),
         xhrFields: {
             withCredentials: true
         },

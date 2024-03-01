@@ -3,10 +3,16 @@
 class User {
     private $username;
     private $password;
+    private $pk_user;
 
-    public function __construct($username, $password) {
-        $this->username = $username;
-        $this->password = $password;
+    public function __construct() {
+        
+    }
+
+    public function initFromDb($data) {
+        $this->pk_user = $data["pk_user"];
+        $this->username = $data["username"];
+        $this->password = $data["password"];
     }
 
     public function getUsername() {
@@ -18,9 +24,5 @@ class User {
     }
 }
 
-// Exemple d'utilisation
-$user = new User("utilisateur123", "motdepasse456");
-echo "Nom d'utilisateur : " . $user->getUsername() . "\n";
-echo "Mot de passe : " . $user->getPassword() . "\n";
 
 ?>
