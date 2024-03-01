@@ -47,11 +47,21 @@ class WrkLogin
 
             $user = new User();
             $user->initFromDb($res);
-            $bool = password_verify($password, $user->getPassword());
-            if ($bool) {
-                $_SESSION['pk_user'] = $username;
-                $user = $username;
+            $hashPassword = $user->getPassword();
+
+            if (password_verify($password, $hashPassword)) {
+                // Le mot de passe est correct
+                // Autoriser l'accès ou effectuer d'autres actions nécessaires
+                echo 'Mot de passe correct !';
+            } else {
+                // Le mot de passe est incorrect
+                // Gérer l'accès refusé ou afficher un message d'erreur
+                echo 'Mot de passe incorrect !';
             }
+
+        } else {
+            echo 'pas trouver';
+
         }
         return $user;
     }

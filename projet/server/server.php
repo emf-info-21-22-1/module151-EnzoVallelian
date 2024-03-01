@@ -60,11 +60,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                     $username = $_POST["username"];
                     $password = $_POST["password"];
-                    $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
+                   echo $username ." et". $password ."";
                     //ctrl login
-                    $login = new LoginManager();
-                    // $login->createUser($username, $password);
+                    $usermang = new userManager();
+                    $usermang->createUser($username, $password);
+                    
 
                 }
             }
