@@ -1,10 +1,12 @@
 <?php
-
-class userManager
+include_once "Connexion.php";
+class UserDBManager
 {
+
 
     public function createUser($username, $password)
     {
+        htmlspecialchars($username, ENT_QUOTES, "");
         // Hasher le mot de passe
         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -16,8 +18,5 @@ class userManager
         // Vous pouvez retourner un message ou une indication de succès si nécessaire
     }
 }
-
-
-
 
 ?>

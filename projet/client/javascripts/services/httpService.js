@@ -34,20 +34,17 @@ function login(username, password, successCallback, errorCallback) {
  * @param {function} successCallback Fonction de callback en cas de succès de la requête.
  * @param {function} errorCallback Fonction de callback en cas d'erreur de la requête.
  */
+
 function createUserAjax(username, password, successCallback, errorCallback) {
-
-    let data = {
-        action: "createUser",
-        username: username,
-        password: password
-    }
-
     $.ajax({
         type: "POST",
-        dataType: "json",
-        url: BASE_URL + "server.php",
-        contentType: "application/json",
-        data: JSON.stringify(data),
+        dataType : "json",
+        url: BASE_URL + "server.php", // Ajoutez le chemin vers server.php ici
+        data: {
+            "action": "createUser",
+            "username": username,
+            "password": password
+        },
         xhrFields: {
             withCredentials: true
         },
@@ -55,6 +52,4 @@ function createUserAjax(username, password, successCallback, errorCallback) {
         error: errorCallback
     });
 }
-
-
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once('configConnexion.php');
+require_once('ConfigConnexion.php');
 
 
 class Connexion {

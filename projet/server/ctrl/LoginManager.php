@@ -1,6 +1,6 @@
 <?php
 
-include_once 'wrk/loginDBManager.php';
+include_once 'wrk/LoginDBManager.php';
 
 class loginManager
 {

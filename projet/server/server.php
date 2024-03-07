@@ -19,21 +19,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 }
 */
 
-include_once('ctrl/loginManager.php');
-include_once('ctrl/categorieManager.php');
-include_once('ctrl/marqueManager.php');
-include_once('ctrl/motoManager.php');
-include_once('ctrl/optionManager.php');
-include_once('ctrl/sessionManager.php');
-include_once('ctrl/userManager.php');
-http_response_code(200);
+include_once('ctrl/LoginManager.php');
+include_once('ctrl/CategorieManager.php');
+include_once('ctrl/MarqueManager.php');
+include_once('ctrl/MotoManager.php');
+include_once('ctrl/OptionManager.php');
+include_once('ctrl/SessionManager.php');
+include_once('ctrl/UserManager.php');
+
 // Vérifier si la requête est bien une requête POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
     $action = initVariableFromJson("action");
+    var_dump( $action );
+    
     switch ($action) {
+        
         case 'login':
-
+            echo'login';
             // Accéder aux valeurs username et password
             $username = initVariableFromJson("username");
             $password = initVariableFromJson("password");
@@ -55,21 +57,27 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             break;
         case 'createUser':
+            echo'createuser';
             if (isset($_POST['username'])) {
                 if (isset($_POST['password'])) {
 
                     $username = $_POST["username"];
                     $password = $_POST["password"];
 
-                   echo $username ." et". $password ."";
+                   echo ($username ." et". $password ."");
+                   
                     //ctrl login
                     $usermang = new userManager();
-                    $usermang->createUser($username, $password);
+                    $usermang->__construct($username, $password);
                     
 
                 }
             }
             break;
+            default:
+            echo "default";
+            echo $action;
+        
     }
 
     // Récupérer les données envoyées par la requête AJAX
@@ -80,13 +88,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Simplement pour l'exemple, renvoyons une réponse JSON avec les données reçues
 
 }
-
 function initVariableFromJson($key)
 {
-
     $data = json_decode(file_get_contents("php://input"), true);
-    echo json_encode($data);
-    return $data[$key];
+
+    // Vérifier si la clé existe dans le tableau avant d'y accéder
+    if (isset($data[$key])) {
+        echo $data[$key];
+        return $data[$key];
+    } else {
+        
+        echo "init";
+        // Gérer le cas où la clé n'existe pas, peut-être en renvoyant une valeur par défaut ou en lançant une exception
+        return null; // Par exemple, renvoie null si la clé n'existe pas
+        
+    }
 }
+
 
 ?>
