@@ -30,12 +30,11 @@ include_once('ctrl/UserManager.php');
 // Vérifier si la requête est bien une requête POST
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = initVariableFromJson("action");
-    var_dump( $action );
-    
+
     switch ($action) {
-        
+
         case 'login':
-            echo'login';
+            echo 'login';
             // Accéder aux valeurs username et password
             $username = initVariableFromJson("username");
             $password = initVariableFromJson("password");
@@ -57,27 +56,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             }
             break;
         case 'createUser':
-            echo'createuser';
-            if (isset($_POST['username'])) {
-                if (isset($_POST['password'])) {
+            $username = initVariableFromJson("username");
+            $password = initVariableFromJson("password");
 
-                    $username = $_POST["username"];
-                    $password = $_POST["password"];
+            if (isset($username)) {
+                if (isset($password)) {
 
-                   echo ($username ." et". $password ."");
-                   
+
                     //ctrl login
-                    $usermang = new userManager();
+                    $usermang = new UserManager($password, $username);
+                    echo "";
                     $usermang->__construct($username, $password);
-                    
+
 
                 }
             }
             break;
-            default:
+        default:
             echo "default";
             echo $action;
-        
+
     }
 
     // Récupérer les données envoyées par la requête AJAX
@@ -97,11 +95,11 @@ function initVariableFromJson($key)
         echo $data[$key];
         return $data[$key];
     } else {
-        
+
         echo "init";
         // Gérer le cas où la clé n'existe pas, peut-être en renvoyant une valeur par défaut ou en lançant une exception
         return null; // Par exemple, renvoie null si la clé n'existe pas
-        
+
     }
 }
 
