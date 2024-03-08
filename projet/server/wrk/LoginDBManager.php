@@ -23,52 +23,10 @@ class WrkLogin
      */
     public function startSession()
     {
-       // session_start();
+        session_start();
     }
 
-    /**
-     * Permet de checker le login et le password d'un utilisateur pour qu'il puisse se connecter.
-     *
-     * @param mixed $username nom d'utilisateur
-     * @param mixed $password mot de passe
-     * 
-     * @return String du username
-     * 
-     */
-
-     /*
-    public function testLogin($username, $password)
-    {
-
-        $query = "SELECT * FROM t_user where username=:username";
-        $params = array('username' => htmlspecialchars($username));
-        $res = $this->connexion->selectQuery($query, $params);
-        
-
-        //Vérifier l'existance du user
-        if ($res) {
-
-            $user = new User();
-            $user->initFromDb($res);
-            
-            $hashPassword = $user->getPassword();
-
-            if (password_verify($password, $hashPassword)) {
-                // Le mot de passe est correct
-                // Autoriser l'accès ou effectuer d'autres actions nécessaires
-                echo 'Mot de passe correct !';
-            } else {
-                // Le mot de passe est incorrect
-                // Gérer l'accès refusé ou afficher un message d'erreur
-                echo 'Mot de passe incorrect !';
-            }
-
-        } else {
-            echo 'pas trouver';
-
-        }
-        return $user;
-    }*/
+    
     public function testLogin($username, $password)
     {
         $query = "SELECT * FROM t_user WHERE username=:username";

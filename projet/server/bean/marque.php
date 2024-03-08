@@ -4,9 +4,8 @@ class Marque {
   private $id;
   private $nom;
 
-  public function __construct($id, $nom) {
-      $this->id = $id;
-      $this->nom = $nom;
+  public function __construct() {
+     
   }
 
   public function getId() {
@@ -16,6 +15,11 @@ class Marque {
   public function getNom() {
       return $this->nom;
   }
+  public function initFromDb($data) {
+    $this->pk_marque = $data["pk_marque"];
+    $this->Nom = $data["Nom"];
+    
+}
 }
 
 ?>

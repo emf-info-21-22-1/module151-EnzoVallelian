@@ -7,10 +7,7 @@ class UserDBManager
     {
         $this->connexion = Connexion::getInstance();
     }
-    public function startSession()
-    {
-       // session_start();
-    }
+    
 
     public function createUser($username, $password)
     {

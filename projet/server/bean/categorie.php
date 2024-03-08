@@ -5,10 +5,9 @@ class Categorie
   private $id;
   private $categorie;
 
-  public function __construct($id, $categorie)
+  public function __construct()
   {
-    $this->id = $id;
-    $this->categorie = $categorie;
+   
   }
 
   public function getId()
@@ -20,5 +19,10 @@ class Categorie
   {
     return $this->categorie;
   }
+  public function initFromDb($data) {
+    $this->pk_user = $data["pk_categorie"];
+    $this->categorie = $data["categorie"];
+  
+}
 }
 ?>
