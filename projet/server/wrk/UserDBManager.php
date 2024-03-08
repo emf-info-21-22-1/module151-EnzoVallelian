@@ -21,6 +21,7 @@ class UserDBManager
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $params = array('username' => htmlspecialchars($username), 'password' => $hashedPassword);
             $this->connexion->executeQuery($query, $params);
+
             $pkUser = $this->connexion->getLastId('t_user');
             $response = array(
                 'success' => true,

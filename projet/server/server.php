@@ -28,7 +28,8 @@ include_once('ctrl/SessionManager.php');
 include_once('ctrl/UserManager.php');
 
 $session = new SessionManager();
-
+$login = new LoginManager($session);
+$motoManag = new MotoManager();
 // Vérifier si la requête est bien une requête POST
 if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET") {
     $action = initVariableFromJson("action");
@@ -47,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET")
 
 
                     //ctrl login
-                    $login = new LoginManager($session);
+                   
                     $res = $login->login($username, $password);
 
 
@@ -75,7 +76,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET")
             break;
         case "getallMoto":
 
-            $motoManag = new MotoManager();
             $res = $motoManag->getAllMoto();
             break;
 

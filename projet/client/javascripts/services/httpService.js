@@ -57,7 +57,7 @@ function createUserAjax(username, password, successCallback, errorCallback) {
 
 function getallMoto(successCallback, errorCallback) {
     $.ajax({
-        type: "POST",
+        type: "GET",
         dataType: "JSON",
         url: BASE_URL + "server.php",
         data: {
@@ -68,7 +68,7 @@ function getallMoto(successCallback, errorCallback) {
         },
         success: successCallback,
         error: errorCallback
-    });
+    });}
 
 
     function logOut(successCallback, errorCallback) {
@@ -86,5 +86,3 @@ function getallMoto(successCallback, errorCallback) {
             error: errorCallback
         });
     }
-}
-

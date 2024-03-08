@@ -10,9 +10,10 @@ class UserManager
         // Créez une instance de UserDBManager
         $this->wrk = new UserDBManager();
        
-        echo"construct";
+        
         // Appelez la méthode pour créer un utilisateur avec le nom d'utilisateur et le mot de passe fournis
         $this->wrk->createUser($username, $password);
+            
     }
 }
 
