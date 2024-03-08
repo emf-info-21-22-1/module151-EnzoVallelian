@@ -34,7 +34,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     switch ($action) {
 
         case 'login':
-            echo 'login';
+            
             // Accéder aux valeurs username et password
             $username = initVariableFromJson("username");
             $password = initVariableFromJson("password");
@@ -49,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     $login = new LoginManager();
                     $res = $login->login($username, $password);
 
-                    echo $res;
+                    
                     //$login->createUser($username, $password);
 
                 }
@@ -64,9 +64,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                     //ctrl login
-                    $usermang = new UserManager($password, $username);
-                    echo "";
-                    $usermang->__construct($username, $password);
+                    $usermang = new UserManager($username,$password);
+                  
+                   
 
 
                 }
@@ -77,13 +77,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo $action;
 
     }
-
-    // Récupérer les données envoyées par la requête AJAX
-
-    // Faites ce que vous voulez avec les données récupérées
-    // Par exemple, vérifier les informations d'identification, accéder à la base de données, etc.
-
-    // Simplement pour l'exemple, renvoyons une réponse JSON avec les données reçues
 
 }
 function initVariableFromJson($key)
@@ -97,8 +90,7 @@ function initVariableFromJson($key)
     } else {
 
         echo "init";
-        // Gérer le cas où la clé n'existe pas, peut-être en renvoyant une valeur par défaut ou en lançant une exception
-        return null; // Par exemple, renvoie null si la clé n'existe pas
+        return null; 
 
     }
 }
