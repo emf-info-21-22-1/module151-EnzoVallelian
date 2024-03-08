@@ -16,7 +16,7 @@ function login(username, password, successCallback, errorCallback) {
         type: "POST",
         url: BASE_URL + "server.php",
         contentType: "application/json",
-        dataType:"json",
+        dataType: "json",
         data: JSON.stringify(data),
         xhrFields: {
             withCredentials: true
@@ -38,12 +38,30 @@ function login(username, password, successCallback, errorCallback) {
 function createUserAjax(username, password, successCallback, errorCallback) {
     $.ajax({
         type: "POST",
-        dataType : "json",
-        url: BASE_URL + "server.php", // Ajoutez le chemin vers server.php ici
+        contentType: "application/json", // Définir le type de contenu comme JSON
+        url: BASE_URL + "server.php",
+        data: JSON.stringify({
+            action: "createUser",
+            username: username,
+            password: password
+        }), // Convertir les données en JSON
+        xhrFields: {
+            withCredentials: true
+        },
+        success: successCallback,
+        error: errorCallback
+    });
+}
+
+
+
+function getallMoto(successCallback, errorCallback) {
+    $.ajax({
+        type: "POST",
+        dataType: "JSON",
+        url: BASE_URL + "server.php",
         data: {
-            "action": "createUser",
-            "username": username,
-            "password": password
+            "action": "getallMoto"
         },
         xhrFields: {
             withCredentials: true
@@ -51,5 +69,22 @@ function createUserAjax(username, password, successCallback, errorCallback) {
         success: successCallback,
         error: errorCallback
     });
+
+
+    function logOut(successCallback, errorCallback) {
+        $.ajax({
+            type: "POST",
+            dataType: "JSON",
+            url: BASE_URL + "server.php",
+            data: {
+                "action": "logout"
+            },
+            xhrFields: {
+                withCredentials: true
+            },
+            success: successCallback,
+            error: errorCallback
+        });
+    }
 }
 

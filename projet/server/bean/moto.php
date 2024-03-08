@@ -24,7 +24,28 @@ class Moto
     $this->fk_marque = $data["fk_marque"];
     $this->fk_categorie = $data["fk_categorie"];
   }
+  public function getPk_moto() {
+    return $this->pk_moto;
+  }
 
+  public function getcc() {
+    return $this->cc;
+
+  }
+  public function gethp() {
+    return $this->hp;
+  }
+
+  public function getWeight() {
+    return $this->weight;
+  }
+  public function getfk_marque() {
+    return $this->fk_marque;
+  }
+
+  public function getfk_categorie() {
+    return $this->fk_categorie;
+  }
 }
 
 

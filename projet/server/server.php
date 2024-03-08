@@ -1,19 +1,19 @@
 <?php
 
-header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Origin: http://localhost:8083');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS'); // Méthodes autorisées
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Headers: Content-Type'); // En-têtes autorisés
 /*
 if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
     // Répondre avec les en-têtes CORS appropriés
-    header('Access-Control-Allow-Origin: http://localhost:8081');
+    header('Access-Control-Allow-Origin: http://localhost:8083');
     header('Access-Control-Allow-Methods: POST, OPTIONS'); // Méthodes autorisées
     header('Access-Control-Allow-Credentials: true');
     header('Access-Control-Allow-Headers: Content-Type'); // En-têtes autorisés
 } else {
     //header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Origin: http://localhost:8081');
+    header('Access-Control-Allow-Origin: http://localhost:8083');
     header('Access-Control-Allow-Credentials: true');
     //connexion ctrl
 }
@@ -27,14 +27,16 @@ include_once('ctrl/OptionManager.php');
 include_once('ctrl/SessionManager.php');
 include_once('ctrl/UserManager.php');
 
+$session = new SessionManager();
+
 // Vérifier si la requête est bien une requête POST
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
+if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "GET") {
     $action = initVariableFromJson("action");
 
     switch ($action) {
 
         case 'login':
-            
+
             // Accéder aux valeurs username et password
             $username = initVariableFromJson("username");
             $password = initVariableFromJson("password");
@@ -42,14 +44,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if (isset($username)) {
                 if (isset($password)) {
 
-                    //$hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
 
                     //ctrl login
-                    $login = new LoginManager();
+                    $login = new LoginManager($session);
                     $res = $login->login($username, $password);
 
-                    
+
                     //$login->createUser($username, $password);
 
                 }
@@ -64,17 +65,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 
                     //ctrl login
-                    $usermang = new UserManager($username,$password);
-                  
-                   
+                    $usermang = new UserManager($username, $password);
+
+
 
 
                 }
             }
             break;
+        case "getallMoto":
+
+            $motoManag = new MotoManager();
+            $res = $motoManag->getAllMoto();
+            break;
+
+        case 'logOut':
+            session_unset();
+            if (session_destroy()) {
+                echo json_encode(
+                    array(
+                        'success' => true,
+                        'message' => 'Session destroy : SUCCESS',
+                    ),
+                    JSON_UNESCAPED_UNICODE
+                );
+            } else {
+                echo json_encode(
+                    array(
+                        'success' => false,
+                        'message' => 'Session destroy : ERROR',
+                    ),
+                    JSON_UNESCAPED_UNICODE
+                );
+            }
+            //$user->ctrlLogout();
+            break;
+
         default:
-            echo "default";
-            echo $action;
+        //   echo "default";
+
 
     }
 
@@ -85,12 +114,12 @@ function initVariableFromJson($key)
 
     // Vérifier si la clé existe dans le tableau avant d'y accéder
     if (isset($data[$key])) {
-        echo $data[$key];
+        //echo $data[$key];
         return $data[$key];
     } else {
 
-        echo "init";
-        return null; 
+        echo "initVariableFromDB";
+        return null;
 
     }
 }

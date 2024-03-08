@@ -5,18 +5,19 @@ include_once 'wrk/LoginDBManager.php';
 class loginManager
 {
 
-
+private $session;
   private $manager;
-  public function __construct()
+  public function __construct($session)
   {
-    $this->manager = new WrkLogin();
+    $this->manager = new WrkLogin($session);
+    $this->session = $session;
   }
 
   public function login($username, $password)
   {
 
-    $this->manager->startSession();
-
+    
+    
     return $this->manager->testLogin($username, $password);
 
   }

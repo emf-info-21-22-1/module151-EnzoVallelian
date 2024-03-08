@@ -1,7 +1,3 @@
-// Importez ou incluez la définition de la fonction login depuis httpService.js
-// par exemple, si les fichiers sont dans le même répertoire :
-// import { login } from './httpService.js';
-
 $(document).ready(() => {
     $("#loginForm").submit((e) => {
         handleSubmit(e);
@@ -17,12 +13,21 @@ function handleSubmit(event) {
     const password = $("#password").val();
 
     // Appeler la fonction login avec les valeurs des champs
-    login(username, password, function(response) {
+    login(username, password, function (response) {
         // Succès de la requête
         console.log("Reponse du serveur:", response);
+        window.location.href = "http://localhost:8083/moto.html"; 
+        
+
+        
+      
+
+
         // Traitez la réponse du serveur en fonction de vos besoins
-    }, function(xhr, status, error) {
+    }, function (xhr, status, error) {
         // Erreur de la requête
+        
+        alert(" utilisateur inconnu");
         console.error("Erreur de requete:", status, error);
         // Affichez un message d'erreur à l'utilisateur ou gérez l'erreur de votre application
     });

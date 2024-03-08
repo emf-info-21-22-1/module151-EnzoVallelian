@@ -7,10 +7,11 @@ class UserDBManager
     {
         $this->connexion = Connexion::getInstance();
     }
-    
+
 
     public function createUser($username, $password)
     {
+        $json = "";
         $query = "SELECT * FROM t_user WHERE username=:username";
         $params = array("username" => $username);
         $isUsernameTaken = $this->connexion->selectSingleQuery($query, $params);
@@ -24,16 +25,21 @@ class UserDBManager
             $response = array(
                 'success' => true,
                 'pk' => $pkUser,
-                'username' => $username
+                'username' => $username,
+                'message' => 'compte creer'
             );
+            http_response_code(200);
+            $json = json_encode($response, JSON_UNESCAPED_UNICODE);
         } else {
+            http_response_code(401);
             $response = array(
                 'success' => false,
                 'message' => "Ce nom d'utilisateur n'est pas disponible"
             );
+            $json = json_encode($response, JSON_UNESCAPED_UNICODE);
         }
-      //  header('Content-Type: application/json; charset=utf-8');
-        echo json_encode($response, JSON_UNESCAPED_UNICODE);
+        //  header('Content-Type: application/json; charset=utf-8');
+        echo $json;
         return $response;
     }
 
