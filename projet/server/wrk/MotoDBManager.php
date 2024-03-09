@@ -15,7 +15,7 @@ class MotoDBManager
         
         $query = "SELECT * FROM t_moto";
         echo $query;
-        echo "ads";
+       
 
         $params = array();
         $response = $this->connexion->selectQuery($query, $params);

@@ -10,6 +10,7 @@ class Moto
   private $price;
   private $fk_marque;
   private $fk_categorie;
+  private $name;
 
   public function __construct()
   {
@@ -23,6 +24,7 @@ class Moto
     $this->weight = $data["weight"];
     $this->fk_marque = $data["fk_marque"];
     $this->fk_categorie = $data["fk_categorie"];
+    $this->name = $data["name"];
   }
   public function getPk_moto() {
     return $this->pk_moto;
@@ -45,7 +47,13 @@ class Moto
 
   public function getfk_categorie() {
     return $this->fk_categorie;
+  
   }
+  public function getName() {
+    return $this->name;
+  
+  }
+
 }
 
 

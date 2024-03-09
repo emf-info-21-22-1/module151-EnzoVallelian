@@ -17,7 +17,7 @@ function handleSubmit(event) {
             // Succès de la requête
             console.log("Réponse du serveur:", response);
 
-            window.location.href = "http://localhost:8083/moto.html";
+            window.location.href = "http://localhost:8083/indexlogged.html";
 
             // Afficher un message d'erreur si la création de compte a échoué
 

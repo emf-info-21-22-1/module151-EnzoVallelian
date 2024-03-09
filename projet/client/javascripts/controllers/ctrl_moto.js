@@ -6,7 +6,7 @@ $(document).ready(() => {
 function getInfos() {
     document.getElementById('username').innerText = window.sessionStorage.getItem(StorageItems.username);
     
-   // document.getElementById('money').innerText = window.sessionStorage.getItem(StorageItems.money);
+
 }
 // Quand le formulaire de login est soumis
 function handleSubmit(event) {
@@ -17,8 +17,6 @@ function handleSubmit(event) {
         // Succès de la requête
         console.log("Reponse du serveur:", response);
         window.location.href = "http://localhost:8083/index.html";
-
-
 
 
 

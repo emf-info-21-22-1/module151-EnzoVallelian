@@ -16,7 +16,7 @@ function handleSubmit(event) {
     login(username, password, function (response) {
         // Succès de la requête
         console.log("Reponse du serveur:", response);
-        window.location.href = "http://localhost:8083/moto.html"; 
+        window.location.href = "http://localhost:8083/indexlogged.html"; 
         
 
         
