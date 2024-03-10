@@ -1,7 +1,7 @@
 
 
 // httpService.js
-var BASE_URL = "http://localhost:8082/";
+var BASE_URL = "https://valleliane.emf-informatique.ch/151/server";
 
 function login(username, password, successCallback, errorCallback) {
 

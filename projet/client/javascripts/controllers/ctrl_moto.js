@@ -16,7 +16,7 @@ function handleSubmit(event) {
     logOut(function (response) {
         // Succès de la requête
         console.log("Reponse du serveur:", response);
-        window.location.href = "http://localhost:8083/index.html";
+        window.location.href = "https://valleliane.emf-informatique.ch/151/client/index.html";
 
 
 

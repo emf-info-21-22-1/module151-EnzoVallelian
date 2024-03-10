@@ -17,7 +17,7 @@ function handleSubmit(event) {
             // Succès de la requête
             console.log("Réponse du serveur:", response);
 
-            window.location.href = "http://localhost:8083/indexlogged.html";
+            window.location.href = "https://valleliane.emf-informatique.ch/151/client/indexlogged.html";
 
             // Afficher un message d'erreur si la création de compte a échoué
 

@@ -1,6 +1,6 @@
 <?php
 
-header('Access-Control-Allow-Origin: http://localhost:8083');
+header('Access-Control-Allow-Origin: https://valleliane.emf-informatique.ch/151/client');
 header('Access-Control-Allow-Methods: POST, GET, OPTIONS'); // Méthodes autorisées
 header('Access-Control-Allow-Credentials: true');
 header('Access-Control-Allow-Headers: Content-Type'); // En-têtes autorisés
