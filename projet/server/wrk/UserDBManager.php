@@ -3,9 +3,11 @@ include_once "Connexion.php";
 class UserDBManager
 {
     private $connexion;
+    private $session;
     function __construct()
     {
         $this->connexion = Connexion::getInstance();
+     
     }
 
 
@@ -21,7 +23,7 @@ class UserDBManager
             $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
             $params = array('username' => htmlspecialchars($username), 'password' => $hashedPassword);
             $this->connexion->executeQuery($query, $params);
-
+          
             $pkUser = $this->connexion->getLastId('t_user');
             $response = array(
                 'success' => true,
@@ -46,19 +48,6 @@ class UserDBManager
 
 
 
-    public function stopSession()
-    {
-        $bool = false;
-        if (isset($_SESSION['user'])) {
-            session_destroy();
-            $bool = true;
-        }
-        return $bool;
-    }
-    public function isConnected()
-    {
-        return(isset($_SESSION['user']));
-    }
 }
 
 

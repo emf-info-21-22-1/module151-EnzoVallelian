@@ -1,9 +1,9 @@
 <?php
 
 define("DB_TYPE", "mysql");
-define("DB_HOST", "host.docker.internal");
-define("DB_NAME", "151-db-moto");
-define("DB_USER", "root");
-define("DB_PASS", "Pa\$\$w0rd");
+define("DB_HOST", "valleliane.emf-informatique.ch");
+define("DB_NAME", "valleliane_151");
+define("DB_USER", "valleliane_1");
+define("DB_PASS", "vHyD2Up8TVEYKpW3NQqM0ujkCchs");
 
 ?>

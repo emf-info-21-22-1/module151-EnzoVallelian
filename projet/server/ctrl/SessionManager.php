@@ -41,6 +41,7 @@ class SessionManager
     {
         session_destroy();
     }
+   
 
     public function has($key)
     {

@@ -170,23 +170,52 @@ body {
 }
 /* Stylisation des motos */
 .moto-item {
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  padding: 10px;
-  margin-bottom: 10px;
+  border: 50px solid #ccc;
+  border-radius: 50px;
+  padding: 50px;
+  margin-bottom: 50px;
 }
 
 /* Bouton pour chaque moto */
 .moto-item button {
   background-color: #4CAF50;
   color: white;
-  padding: 10px 20px;
+  padding: 50px 50px;
   border: none;
-  border-radius: 5px;
+  border-radius: 50px;
   cursor: pointer;
 }
 
 /* Au survol du bouton */
 .moto-item button:hover {
   background-color: #45a049;
+}
+.moto-item {
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  padding: 50px;
+  margin-bottom: 50px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.moto-item p {
+  margin: 50px 0;
+}
+
+.moto-details {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.moto-details:hover {
+  background-color: #0056b3;
+}
+/* Styles pour le conteneur principal */
+.moto-container {
+  margin-top: 4rem; /* Ajouter un espacement en haut */
+  padding: 2rem; /* Ajouter un espacement interne */
 }

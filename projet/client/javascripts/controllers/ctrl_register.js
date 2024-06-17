@@ -13,11 +13,11 @@ function handleSubmit(event) {
 
     if (password === passwordagain) {
         // Appeler la fonction createUserAjax avec les valeurs des champs
-        createUserAjax(username, password, function (response) {
+        createUser(username, password, function (response) {
             // Succès de la requête
             console.log("Réponse du serveur:", response);
 
-            window.location.href = "https://valleliane.emf-informatique.ch/151/client/indexlogged.html";
+            window.location.href = "https://valleliane.emf-informatique.ch/151/client/index.html";
 
             // Afficher un message d'erreur si la création de compte a échoué
 

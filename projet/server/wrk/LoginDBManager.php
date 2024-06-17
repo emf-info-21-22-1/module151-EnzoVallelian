@@ -1,28 +1,24 @@
 <?php
-include_once('Connexion.php');
-include_once('bean/user.php');
+include_once ('Connexion.php');
+include_once ('bean/user.php');
 
 class WrkLogin
 {
     private $connexion;
-    private $session;
+    
 
     /**
      * Constructeur de la class WrkLogin.
      * le constructeur permet d'instancier la connexion à la DB.
      * 
      */
-    function __construct($session)
+    function __construct()
     {
         $this->connexion = Connexion::getInstance();
-        $this->session = $session;
+        
     }
-
-    /**
-     * Permet de démarrer la session d'un utilisateur.
-     *
-     * 
-     */
+    
+   
 
 
 
@@ -49,8 +45,7 @@ class WrkLogin
                     'success' => true,
                     'message' => 'Mot de passe correct !'
                 );
-             
-                $this->session->set("username", $username);
+                
                 http_response_code(200);
                 $json = json_encode($response, JSON_UNESCAPED_UNICODE);
 
@@ -73,7 +68,7 @@ class WrkLogin
             $response = array(
                 'success' => false,
                 'message' => 'utilisateur pas trouver!'
-                
+
             );
             http_response_code(401);
             $json = json_encode($response, JSON_UNESCAPED_UNICODE);
@@ -82,31 +77,6 @@ class WrkLogin
         return $user;
     }
 
-    /**
-     * Permet de deconnecter un utilisateur en détruissant la session.
-     *
-     * @return boolean la déconnexion à réussi.
-     * 
-     */
-    public function deconect()
-    {
-        $bool = false;
-        if (isset($_SESSION['pk_user'])) {
-            session_destroy();
-            $bool = true;
-        }
-        return $bool;
-    }
 
-    /**
-     * test si l'utilisateur et connecté.
-     *
-     * @return boolean isset session.
-     * 
-     */
-    public function isConnected()
-    {
-        return(isset($_SESSION['pk_user']));
-    }
 }
 ?>

@@ -8,15 +8,13 @@
   <title>ConfiguatorMoto</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.js"></script>
-
-
+  <!-- Inclure jQuery avant votre script ctrl_indexlogged.js -->
+  <script src="javascripts/helpers/jquery-3.7.1.min.js"></script>
   <script src="javascripts/services/httpService.js"></script>
   <script src="javascripts/controllers/ctrl_indexlogged.js"></script>
 </head>
 
 <body>
-
-
   <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
       <a href="index.html" class="flex items-center space-x-3 rtl:space-x-reverse">
@@ -27,14 +25,30 @@
         <a href="index.html"><button type="button" id="motoLogOut"
             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Log
             out<output></output></button></a>
-
       </div>
-
+    </div>
   </nav>
 
   <div id="motoContainer" class="moto-container"></div>
+  <div id="motoForm" class="moto-form">
+    <h2>Ajouter une moto</h2>
+    <form id="addMotoForm">
+        <label for="name">Nom:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="hp">Puissance (hp):</label>
+        <input type="number" id="hp" name="hp" required>
+        <label for="cc">Cylindrée (cc):</label>
+        <input type="number" id="cc" name="cc" required>
+        <label for="weight">Poids (kg):</label>
+        <input type="number" id="weight" name="weight" required>
+        <label for="brand">Marque:</label>
+        <input type="text" id="brand" name="brand" required>
+        <label for="category">Catégorie:</label>
+        <input type="text" id="category" name="category" required>
+        <button type="submit">Ajouter</button>
+    </form>
+</div>
+
 </body>
-
-
 
 </html>
