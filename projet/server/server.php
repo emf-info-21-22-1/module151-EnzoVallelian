@@ -115,6 +115,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
                 echo json_encode(
                     array(
                         'success' => true,
+                        // 'message' => 'Session destroy : SUCCESS', cela depend de que cela vaut "   if ($session->destruct()) {"
                         'message' => 'Session destroy : ERROR',
                     ),
                     JSON_UNESCAPED_UNICODE
@@ -123,6 +124,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
                 echo json_encode(
                     array(
                         'success' => false,
+                        // 'message' => 'Session destroy : ERROR', cela depend de que cela vaut "   if ($session->destruct()) {"
                         'message' => 'Session destroy : SUCCESS',
                     ),
                     JSON_UNESCAPED_UNICODE
