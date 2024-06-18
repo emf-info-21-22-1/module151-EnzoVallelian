@@ -78,9 +78,8 @@ class MotoDBManager
 
     public function addMoto($cc, $hp, $weight, $fk_marque, $fk_categorie, $name)
     {
-        $return = null;
         if (empty($cc) || empty($hp) || empty($weight) || empty($fk_marque) || empty($fk_categorie) || empty($name)) {
-            $return = json_encode(
+            return json_encode(
                 array(
                     'success' => false,
                     'message' => 'Tous les champs doivent être renseignés'
@@ -92,12 +91,9 @@ class MotoDBManager
         $query = "INSERT INTO t_moto (cc, hp, weight, fk_marque, fk_categorie, name) VALUES (:cc, :hp, :weight, :fk_marque, :fk_categorie, :name)";
         $insertParams = array(':cc' => $cc, ':hp' => $hp, ':weight' => $weight, ':fk_marque' => $fk_marque, ':fk_categorie' => $fk_categorie, ':name' => $name);
         $insertResult = $this->connexion->executeQuery($query, $insertParams);
-        if ($insertResult === true) {
-            // Récupérer l'ID de la moto nouvellement insérée
-            $lastInsertedId = $this->connexion->getLastId('t_moto');
 
-            // Retourner la réponse JSON avec l'ID de la moto
-            http_response_code(200);
+        if ($insertResult === true) {
+            $lastInsertedId = $this->connexion->getLastId('t_moto');
             return json_encode(
                 array(
                     'success' => true,
@@ -109,8 +105,6 @@ class MotoDBManager
                 JSON_UNESCAPED_UNICODE
             );
         } else {
-            // En cas d'échec de l'insertion, retourner un message d'erreur
-            http_response_code(404);
             return json_encode(
                 array(
                     'success' => false,

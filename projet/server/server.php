@@ -16,7 +16,7 @@ include_once ('ctrl/UserManager.php');
 
 $session = new SessionManager();
 $login = new LoginManager($session);
-$motoManag = new MotoManager($session);
+$motoManag = new MotoManager();
 $optionManag = new OptionManager();
 $categorieManag = new CategorieManager();
 $marqueManag = new MarqueManager();
@@ -54,51 +54,37 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
 
             }
             break;
-        case 'addMoto':
-
-
-            $cc = initVariableFromJson("cc");
-            $hp = initVariableFromJson("hp");
-            $weight = initVariableFromJson("weight");
-            $fk_marque = initVariableFromJson("fk_marque");
-            $fk_categorie = initVariableFromJson("fk_categorie");
-            $name = initVariableFromJson("name");
-            if (isset($cc)) {
-                if (isset($hp)) {
-                    if (isset($weight)) {
-                        if (isset($fk_marque)) {
-                            if (isset($fk_categorie)) {
-                                if (isset($name)) {
-                                    $result = $motoManag->addMoto($cc, $hp, $weight, $fk_marque, $fk_categorie, $name);
-                                }
-                            }
+            case 'addMoto':
+                $usernameTest = $session->get('username');
+                if ($usernameTest !== null) {
+                    $cc = initVariableFromJson("cc");
+                    $hp = initVariableFromJson("hp");
+                    $weight = initVariableFromJson("weight");
+                    $fk_marque = initVariableFromJson("fk_marque");
+                    $fk_categorie = initVariableFromJson("fk_categorie");
+                    $name = initVariableFromJson("name");
+            
+                    if ($cc && $hp && $weight && $fk_marque && $fk_categorie && $name) {
+                        $result = $motoManag->addMoto($cc, $hp, $weight, $fk_marque, $fk_categorie, $name);
+            
+                        // Vérifier si l'ajout de la moto s'est bien passé
+                        if ($result) {
+                            http_response_code(200);
+                            echo $result; // $result est déjà un JSON
+                        } else {
+                            http_response_code(500);
+                            echo json_encode(['success' => false, 'message' => 'Erreur lors de l\'ajout de la moto.']);
                         }
+                    } else {
+                        // Gérer le cas où les données de la moto ne sont pas présentes ou vides
+                        http_response_code(400);
+                        echo json_encode(['success' => false, 'message' => 'Données de la moto manquantes ou vides.']);
                     }
-
-                }
-            }
-            // Récupérer les données de la moto depuis le corps de la requête
-
-
-            // Vérifier si les données de la moto sont présentes et non vides
-            if (!empty($result)) {
-                // Appeler la méthode pour ajouter la moto dans la base de données
-                $result = $motoManag->addMoto($cc, $hp, $weight, $fk_marque, $fk_categorie, $name);
-
-                // Vérifier si l'ajout de la moto s'est bien passé
-                if ($result) {
-                    http_response_code(200);
-                    echo json_encode(['success' => true, 'message' => 'Moto ajoutée avec succès.']);
                 } else {
-                    http_response_code(500);
-                    echo json_encode(['success' => false, 'message' => 'Erreur lors de l\'ajout de la moto.']);
+                    http_response_code(403); // Utilisateur non autorisé
+                    echo json_encode(['success' => false, 'message' => 'Accès non autorisé.']);
                 }
-            } else {
-                // Gérer le cas où les données de la moto ne sont pas présentes ou vides
-                http_response_code(400);
-                echo json_encode(['success' => false, 'message' => 'Données de la moto manquantes ou vides.']);
-            }
-            break;
+                break;
 
     }
 
@@ -116,7 +102,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
                     array(
                         'success' => true,
                         // 'message' => 'Session destroy : SUCCESS', cela depend de que cela vaut "   if ($session->destruct()) {"
-                        'message' => 'Session destroy : ERROR',
+                        'message' => 'Session destroy : SUCCESS',
                     ),
                     JSON_UNESCAPED_UNICODE
                 );
@@ -124,8 +110,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
                 echo json_encode(
                     array(
                         'success' => false,
-                        // 'message' => 'Session destroy : ERROR', cela depend de que cela vaut "   if ($session->destruct()) {"
-                        'message' => 'Session destroy : SUCCESS',
+                        // 'message' => 'Session destroy : SUCCESS', cela depend de que cela vaut "   if ($session->destruct()) {"
+                        'message' => 'Session destroy : ERROR',
                     ),
                     JSON_UNESCAPED_UNICODE
                 );
