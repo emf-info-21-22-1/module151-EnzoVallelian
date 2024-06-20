@@ -116,7 +116,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
                     array(
                         'success' => true,
                         // 'message' => 'Session destroy : SUCCESS', cela depend de que cela vaut "   if ($session->destruct()) {"
-                        'message' => 'Session destroy : ERROR',
+                        'message' => 'Session destroy : success',
                     ),
                     JSON_UNESCAPED_UNICODE
                 );
@@ -125,7 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
                     array(
                         'success' => false,
                         // 'message' => 'Session destroy : ERROR', cela depend de que cela vaut "   if ($session->destruct()) {"
-                        'message' => 'Session destroy : SUCCESS',
+                        'message' => 'Session destroy : error',
                     ),
                     JSON_UNESCAPED_UNICODE
                 );
