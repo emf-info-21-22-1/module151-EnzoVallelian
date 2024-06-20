@@ -165,7 +165,7 @@ function addMoto(cc, hp, weight, fk_marque, fk_categorie, name, successCallback,
 
     $.ajax({
         type: "POST",
-        url: BASE_URL + "server.php",
+        url: BASE_URL + "server.php/addMoto",
         contentType: "application/json",
         dataType: "JSON",
         data: JSON.stringify(data),

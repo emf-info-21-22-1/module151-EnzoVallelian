@@ -22,16 +22,45 @@ class loginManager
   }
 
 
-    /**
-     * test si l'utilisateur et connecté.
-     *
-     * @return boolean isset session.
-     * 
-     */
-    public function isConnected()
-    {
-        return (isset($_SESSION['pk_user']));
+  /**
+   * test si l'utilisateur et connecté.
+   *
+   * @return boolean isset session.
+   * 
+   */
+  public function isConnected()
+  {
+    return (isset($_SESSION['pk_user']));
+  }
+
+  public function logOut()
+  {
+
+    if ($this->session->destruct()) {
+      echo json_encode(
+        array(
+          'success' => true,
+          // 'message' => 'Session destroy : SUCCESS', cela depend de que cela vaut "   if ($session->destruct()) {"
+          'message' => 'Session destroy : SUCCESS',
+        ),
+        JSON_UNESCAPED_UNICODE
+      );
+      http_response_code(200);
+
+    } else {
+      echo json_encode(
+        array(
+          'success' => false,
+          // 'message' => 'Session destroy : SUCCESS', cela depend de que cela vaut "   if ($session->destruct()) {"
+          'message' => 'Session destroy : ERROR',
+        ),
+        JSON_UNESCAPED_UNICODE
+      );
+      http_response_code(500);
     }
+
+
+  }
 
 
 }

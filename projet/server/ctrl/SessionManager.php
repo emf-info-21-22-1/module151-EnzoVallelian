@@ -39,7 +39,7 @@ class SessionManager
     }
     public function destruct()
     {
-        session_destroy();
+        return session_destroy();
     }
    
 

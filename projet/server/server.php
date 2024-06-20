@@ -97,27 +97,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
 
         case 'logOut':
             
-            if ($session->destruct()) {
-                echo json_encode(
-                    array(
-                        'success' => true,
-                        // 'message' => 'Session destroy : SUCCESS', cela depend de que cela vaut "   if ($session->destruct()) {"
-                        'message' => 'Session destroy : SUCCESS',
-                    ),
-                    JSON_UNESCAPED_UNICODE
-                );
-            } else {
-                echo json_encode(
-                    array(
-                        'success' => false,
-                        // 'message' => 'Session destroy : SUCCESS', cela depend de que cela vaut "   if ($session->destruct()) {"
-                        'message' => 'Session destroy : ERROR',
-                    ),
-                    JSON_UNESCAPED_UNICODE
-                );
-                http_response_code(500);
-            }
-            //$user->ctrlLogout();
+            $login->logOut();
             break;
         case 'getAllOptions':
             // Appelle la méthode pour récupérer toutes les options
