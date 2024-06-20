@@ -46,7 +46,7 @@ function getallMoto(successCallback, errorCallback) {
         type: "GET",
         dataType: "JSON",
         url: BASE_URL + "server.php?action=getallMoto",
-       
+
         xhrFields: {
             withCredentials: true
         },
@@ -144,6 +144,31 @@ function getAllMotoByUser(userId, successCallback, errorCallback) {
             action: "getAllMotoByUser",
             userId: userId
         },
+        xhrFields: {
+            withCredentials: true
+        },
+        success: successCallback,
+        error: errorCallback
+    });
+
+}
+function addMoto(cc, hp, weight, fk_marque, fk_categorie, name, successCallback, errorCallback) {
+    let data = {
+        action: "addMoto",
+        cc: cc,
+        hp: hp,
+        weight: weight,
+        fk_marque: fk_marque,
+        fk_categorie: fk_categorie,
+        name: name
+    };
+
+    $.ajax({
+        type: "POST",
+        url: BASE_URL + "server.php",
+        contentType: "application/json",
+        dataType: "JSON",
+        data: JSON.stringify(data),
         xhrFields: {
             withCredentials: true
         },
