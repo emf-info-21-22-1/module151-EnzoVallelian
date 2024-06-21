@@ -16,8 +16,8 @@ $(document).ready(() => {
             hp: $('#hp').val(),
             cc: $('#cc').val(),
             weight: $('#weight').val(),
-            fk_marque: $('#brand').val(),
-            fk_categorie: $('#category').val()
+           // fk_marque: $('#brand').val(),
+           // fk_categorie: $('#category').val()
         };
 
         // Envoyez la requête pour ajouter une moto
@@ -59,8 +59,10 @@ function displayMotos(data) {
                 <p><strong>Puissance:</strong> ${moto.hp} hp</p>
                 <p><strong>Cylindrée:</strong> ${moto.cc} cc</p>
                 <p><strong>Poids:</strong> ${moto.weight} kg</p>
+               <!--
                 <p><strong>Marque:</strong> ${moto.fk_marque}</p>
                 <p><strong>Catégorie:</strong> ${moto.fk_categorie}</p>
+                -->
               
             `;
 

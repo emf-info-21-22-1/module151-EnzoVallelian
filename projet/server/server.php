@@ -7,19 +7,14 @@ header('Access-Control-Allow-Headers: Content-Type'); // En-têtes autorisés
 
 
 include_once ('ctrl/LoginManager.php');
-include_once ('ctrl/CategorieManager.php');
-include_once ('ctrl/MarqueManager.php');
 include_once ('ctrl/MotoManager.php');
-include_once ('ctrl/OptionManager.php');
 include_once ('ctrl/SessionManager.php');
 include_once ('ctrl/UserManager.php');
 
 $session = new SessionManager();
 $login = new LoginManager($session);
 $motoManag = new MotoManager();
-$optionManag = new OptionManager();
-$categorieManag = new CategorieManager();
-$marqueManag = new MarqueManager();
+
 // Vérifier si la requête est bien une requête POST ou GET 
 if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT") {
     $action = initVariableFromJson("action");
