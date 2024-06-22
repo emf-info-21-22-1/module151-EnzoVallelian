@@ -1,10 +1,10 @@
 <?php
 
+// Configuration des en-têtes HTTP pour permettre les requêtes CORS
 header('Access-Control-Allow-Origin: https://valleliane.emf-informatique.ch/151/client');
-header('Access-Control-Allow-Methods: POST, GET, OPTIONS'); // Méthodes autorisées
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
 header('Access-Control-Allow-Credentials: true');
-header('Access-Control-Allow-Headers: Content-Type'); // En-têtes autorisés
-
+header('Access-Control-Allow-Headers: Content-Type');
 
 include_once ('ctrl/LoginManager.php');
 include_once ('ctrl/MotoManager.php');
@@ -15,38 +15,26 @@ $session = new SessionManager();
 $login = new LoginManager($session);
 $motoManag = new MotoManager();
 
-// Vérifier si la requête est bien une requête POST ou GET 
+// Vérification du type de requête HTTP
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = initVariableFromJson("action");
 
     switch ($action) {
-
         case 'login':
-            // Accéder aux valeurs username et password
             $username = initVariableFromJson("username");
             $password = initVariableFromJson("password");
-            if (isset($username)) {
-                if (isset($password)) {
-
-                    $res = $login->login($username, $password);
-
-                }
+            if (isset($username) && isset($password)) {
+                $res = $login->login($username, $password);
             }
             break;
         case 'createUser':
             $username = initVariableFromJson("username");
             $password = initVariableFromJson("password");
-
-            if (isset($username)) {
-                if (isset($password)) {
-                    //ctrl login
-                    $usermang = new UserManager($username, $password);
-                    http_response_code(200);
-                }
+            if (isset($username) && isset($password)) {
+                $usermang = new UserManager($username, $password);
+                http_response_code(200);
             } else {
                 http_response_code(401);
-
-
             }
             break;
         case 'addMoto':
@@ -57,78 +45,56 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $weight = initVariableFromJson("weight");
                 $name = initVariableFromJson("name");
                 if ($cc && $hp && $weight && $name) {
-
                     $result = $motoManag->addMoto($cc, $hp, $weight, $name);
-
-                    // Vérifier si l'ajout de la moto s'est bien passé
                     if ($result) {
                         http_response_code(200);
-                        echo $result; // $result est déjà un JSON
+                        echo $result;
                     } else {
                         http_response_code(500);
                         echo json_encode(['success' => false, 'message' => 'Erreur lors de l\'ajout de la moto.']);
                     }
                 } else {
-                    // Gérer le cas où les données de la moto ne sont pas présentes ou vides
                     http_response_code(400);
                     echo json_encode(['success' => false, 'message' => 'Données de la moto manquantes ou vides. server.php']);
                 }
             } else {
-                http_response_code(403); // Utilisateur non autorisé
+                http_response_code(403);
                 echo json_encode(['success' => false, 'message' => 'Accès non autorisé.']);
             }
             break;
-
     }
-
 } elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
-
-    //$action = initVariableFromJson("action");
     $action = initVariableFromUrl("action");
 
     switch ($action) {
-
         case 'logOut':
-
             $login->logOut();
             break;
         case 'getAllOptions':
-            // Appelle la méthode pour récupérer toutes les options
             $res = $optionManag->getAllOptions();
-            // Retourne le résultat au format JSON
             echo json_encode($res);
             http_response_code(200);
             break;
-
         case 'getOptionsByMotoId':
-            // Vérifie si l'ID de la moto est passé en paramètre
             $motoId = initVariableFromJson("motoId");
             if ($motoId !== null) {
-                // Appelle la méthode pour récupérer les options de la moto spécifiée
                 $res = $optionManag->getOptionsByMotoId($motoId);
-                // Retourne le résultat au format JSON
                 echo json_encode($res);
                 http_response_code(200);
             } else {
-                // Gestion de l'erreur si l'ID de la moto n'est pas fourni
                 echo json_encode(['error' => 'Moto ID is missing']);
                 http_response_code(401);
             }
             break;
         case 'getAllCategories':
-            // Appelle la méthode pour récupérer toutes les catégories
             $res = $categorieManag->getAllCategories();
-            // Retourne le résultat au format JSON
             http_response_code(200);
             echo json_encode($res);
             break;
         case 'getAllMarques':
-            // Appelle la méthode pour récupérer toutes les marques
             $res = $marqueManag->getAllMarques();
-            // Retourne le résultat au format JSON
             http_response_code(200);
             echo json_encode($res);
-
             break;
         case 'getAllMotoByUser':
             $userId = initVariableFromJson("userId");
@@ -145,9 +111,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             if ($usernameTest !== null) {
                 $res = $motoManag->getAllMoto($usernametest);
                 http_response_code(200);
-                echo json_encode($res); // Assurez-vous que la réponse est encodée en JSON
+                echo json_encode($res);
             } else {
-
                 http_response_code(401);
             }
             break;

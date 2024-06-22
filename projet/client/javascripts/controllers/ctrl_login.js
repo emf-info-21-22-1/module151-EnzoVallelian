@@ -1,43 +1,30 @@
 $(document).ready(() => {
     $("#loginForm").submit((e) => {
-        handleSubmit(e);
+        handleSubmit(e); // Gestion de la soumission du formulaire de login
     });
 });
 
-
-// Quand le formulaire de login est soumis
 function handleSubmit(event) {
     event.preventDefault(); // Empêche le rechargement de la page
 
-    // Récupérer les valeurs des champs
     const username = $("#username").val();
     const password = $("#password").val();
 
-    // Appeler la fonction login avec les valeurs des champs
+    // Appel à la fonction login avec les valeurs du formulaire
     login(username, password, function (response) {
-        alert(username)
+        alert(username);
         console.log(username);
-        localStorage.setItem('username', username );
+        localStorage.setItem('username', username);
 
-        // Succès de la requête
-        console.log("Reponse du serveur:", response);
-        window.location.href = "https://valleliane.emf-informatique.ch/151/client/indexlogged.html"; 
-        
-
-        
-      
-
-
-        // Traitez la réponse du serveur en fonction de vos besoins 
+        // Redirection vers la page protégée après succès
+        console.log("Réponse du serveur:", response);
+        window.location.href = "https://valleliane.emf-informatique.ch/151/client/indexlogged.html";
     }, function (xhr, status, error) {
-        // Erreur de la requête
-        
-        alert("votre login ne fonctionne pas");
-        console.error("Erreur de requete:", status, error);
-        // Affichez un message d'erreur à l'utilisateur ou gérez l'erreur de votre application
+        alert("Votre login ne fonctionne pas");
+        console.error("Erreur de requête:", status, error);
     });
 
-    // Réinitialiser les champs de saisie si nécessaire
+    // Réinitialisation des champs de saisie
     $("#username").val('');
     $("#password").val('');
 }
