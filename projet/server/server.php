@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
                     } else {
                         // Gérer le cas où les données de la moto ne sont pas présentes ou vides
                         http_response_code(400);
-                        echo json_encode(['success' => false, 'message' => 'Données de la moto manquantes ou vides.']);
+                        echo json_encode(['success' => false, 'message' => 'Données de la moto manquantes ou vides. server.php']);
                     }
                 } else {
                     http_response_code(403); // Utilisateur non autorisé

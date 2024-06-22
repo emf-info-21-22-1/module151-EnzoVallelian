@@ -71,14 +71,12 @@ function logOut(successCallback, errorCallback) {
     });
 }
 
-function addMoto(cc, hp, weight, fk_marque, fk_categorie, name, successCallback, errorCallback) {
+function addMoto(cc, hp, weight,name, successCallback, errorCallback) {
     let data = {
         action: "addMoto",
         cc: cc,
         hp: hp,
         weight: weight,
-        fk_marque: fk_marque,
-        fk_categorie: fk_categorie,
         name: name
     };
 

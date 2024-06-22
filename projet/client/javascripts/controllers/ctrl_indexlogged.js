@@ -15,7 +15,7 @@ $(document).ready(() => {
             name: $('#name').val(),
             hp: $('#hp').val(),
             cc: $('#cc').val(),
-            weight: $('#weight').val(),
+            weight: $('#weight').val()
            // fk_marque: $('#brand').val(),
            // fk_categorie: $('#category').val()
         };
