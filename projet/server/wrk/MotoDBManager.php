@@ -76,9 +76,9 @@ class MotoDBManager
         return $result;
     }
 
-    public function addMoto($cc, $hp, $weight, $fk_marque, $fk_categorie, $name)
+    public function addMoto($cc, $hp, $weight, $name)
     {
-        if (empty($cc) || empty($hp) || empty($weight) || empty($fk_marque) || empty($fk_categorie) || empty($name)) {
+        if (empty($cc) || empty($hp) || empty($weight) || empty($name)) {
             return json_encode(
                 array(
                     'success' => false,
@@ -88,8 +88,8 @@ class MotoDBManager
             );
         }
 
-        $query = "INSERT INTO t_moto (cc, hp, weight, fk_marque, fk_categorie, name) VALUES (:cc, :hp, :weight, :fk_marque, :fk_categorie, :name)";
-        $insertParams = array(':cc' => $cc, ':hp' => $hp, ':weight' => $weight, ':fk_marque' => $fk_marque, ':fk_categorie' => $fk_categorie, ':name' => $name);
+        $query = "INSERT INTO t_moto (cc, hp, weight, name) VALUES (:cc, :hp, :weight, :name)";
+        $insertParams = array(':cc' => $cc, ':hp' => $hp, ':weight' => $weight, ':name' => $name);
         $insertResult = $this->connexion->executeQuery($query, $insertParams);
 
         if ($insertResult === true) {

@@ -55,12 +55,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
                     $cc = initVariableFromJson("cc");
                     $hp = initVariableFromJson("hp");
                     $weight = initVariableFromJson("weight");
-                    $fk_marque = initVariableFromJson("fk_marque");
-                    $fk_categorie = initVariableFromJson("fk_categorie");
+              
                     $name = initVariableFromJson("name");
             
-                    if ($cc && $hp && $weight && $fk_marque && $fk_categorie && $name) {
-                        $result = $motoManag->addMoto($cc, $hp, $weight, $fk_marque, $fk_categorie, $name);
+                    if ($cc && $hp && $weight && $name) {
+                        $result = $motoManag->addMoto($cc, $hp, $weight, $name);
             
                         // Vérifier si l'ajout de la moto s'est bien passé
                         if ($result) {

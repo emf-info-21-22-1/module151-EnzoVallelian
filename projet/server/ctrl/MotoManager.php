@@ -20,9 +20,9 @@ class MotoManager
   {
     return $this->manager->getAllMotoByUser($userId);
   }
-  public function addMoto($cc, $hp, $weight, $fk_marque, $fk_categorie, $name)
+  public function addMoto($cc, $hp, $weight,  $name)
   {
-      return $this->manager->addMoto($cc, $hp, $weight, $fk_marque, $fk_categorie, $name);
+      return $this->manager->addMoto($cc, $hp, $weight, $name);
   }
   
 }

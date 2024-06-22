@@ -40,7 +40,6 @@ class loginManager
       echo json_encode(
         array(
           'success' => true,
-          // 'message' => 'Session destroy : SUCCESS', cela depend de que cela vaut "   if ($session->destruct()) {"
           'message' => 'Session destroy : SUCCESS',
         ),
         JSON_UNESCAPED_UNICODE
@@ -51,7 +50,6 @@ class loginManager
       echo json_encode(
         array(
           'success' => false,
-          // 'message' => 'Session destroy : SUCCESS', cela depend de que cela vaut "   if ($session->destruct()) {"
           'message' => 'Session destroy : ERROR',
         ),
         JSON_UNESCAPED_UNICODE
