@@ -1,5 +1,5 @@
 $(document).ready(() => {
-    getInfos();
+   // getInfos();
     // Appel à la fonction getallMoto avec la fonction de rappel
     getallMoto(displayMotos, function (xhr, status, error) {
         console.error("Erreur lors de la récupération des données de moto:", status, error);
@@ -9,22 +9,18 @@ $(document).ready(() => {
     $('#addMotoForm').on('submit', function (e) {
         e.preventDefault();
 
-        // Récupérez les valeurs des champs du formulaire
         const motoData = {
             action: 'addMoto',
             name: $('#name').val(),
             hp: $('#hp').val(),
             cc: $('#cc').val(),
             weight: $('#weight').val()
-           // fk_marque: $('#brand').val(),
-           // fk_categorie: $('#category').val()
         };
 
-        // Envoyez la requête pour ajouter une moto
         addMoto(motoData, function (response) {
             if (response.success) {
                 alert('Moto ajoutée avec succès.');
-                // Rechargez la liste des motos
+                $('#addMotoForm')[0].reset();
                 getallMoto(displayMotos, function (xhr, status, error) {
                     console.error("Erreur lors de la récupération des données de moto:", status, error);
                 });
@@ -37,10 +33,10 @@ $(document).ready(() => {
         });
     });
 });
-
+/* 
 function getInfos() {
     alert("Bienvenue à " + localStorage.getItem('username'));
-}
+}*/
 
 function displayMotos(data) {
     if (data) {
@@ -59,10 +55,7 @@ function displayMotos(data) {
                 <p><strong>Puissance:</strong> ${moto.hp} hp</p>
                 <p><strong>Cylindrée:</strong> ${moto.cc} cc</p>
                 <p><strong>Poids:</strong> ${moto.weight} kg</p>
-               <!--
-                <p><strong>Marque:</strong> ${moto.fk_marque}</p>
-                <p><strong>Catégorie:</strong> ${moto.fk_categorie}</p>
-                -->
+            
               
             `;
 

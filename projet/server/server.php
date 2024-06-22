@@ -16,7 +16,7 @@ $login = new LoginManager($session);
 $motoManag = new MotoManager();
 
 // Vérifier si la requête est bien une requête POST ou GET 
-if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT") {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $action = initVariableFromJson("action");
 
     switch ($action) {
@@ -27,9 +27,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
             $password = initVariableFromJson("password");
             if (isset($username)) {
                 if (isset($password)) {
-                    //ctrl login
+
                     $res = $login->login($username, $password);
-                    //$login->createUser($username, $password);
+
                 }
             }
             break;
@@ -49,36 +49,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
 
             }
             break;
-            case 'addMoto':
-                $usernameTest = $session->get('username');
-                if ($usernameTest !== null) {
-                    $cc = initVariableFromJson("cc");
-                    $hp = initVariableFromJson("hp");
-                    $weight = initVariableFromJson("weight");
-              
-                    $name = initVariableFromJson("name");
-            
-                    if ($cc && $hp && $weight && $name) {
-                        $result = $motoManag->addMoto($cc, $hp, $weight, $name);
-            
-                        // Vérifier si l'ajout de la moto s'est bien passé
-                        if ($result) {
-                            http_response_code(200);
-                            echo $result; // $result est déjà un JSON
-                        } else {
-                            http_response_code(500);
-                            echo json_encode(['success' => false, 'message' => 'Erreur lors de l\'ajout de la moto.']);
-                        }
+        case 'addMoto':
+            $usernameTest = $session->get('username');
+            if ($usernameTest !== null) {
+                $cc = initVariableFromJson("cc");
+                $hp = initVariableFromJson("hp");
+                $weight = initVariableFromJson("weight");
+                $name = initVariableFromJson("name");
+                if ($cc && $hp && $weight && $name) {
+
+                    $result = $motoManag->addMoto($cc, $hp, $weight, $name);
+
+                    // Vérifier si l'ajout de la moto s'est bien passé
+                    if ($result) {
+                        http_response_code(200);
+                        echo $result; // $result est déjà un JSON
                     } else {
-                        // Gérer le cas où les données de la moto ne sont pas présentes ou vides
-                        http_response_code(400);
-                        echo json_encode(['success' => false, 'message' => 'Données de la moto manquantes ou vides. server.php']);
+                        http_response_code(500);
+                        echo json_encode(['success' => false, 'message' => 'Erreur lors de l\'ajout de la moto.']);
                     }
                 } else {
-                    http_response_code(403); // Utilisateur non autorisé
-                    echo json_encode(['success' => false, 'message' => 'Accès non autorisé.']);
+                    // Gérer le cas où les données de la moto ne sont pas présentes ou vides
+                    http_response_code(400);
+                    echo json_encode(['success' => false, 'message' => 'Données de la moto manquantes ou vides. server.php']);
                 }
-                break;
+            } else {
+                http_response_code(403); // Utilisateur non autorisé
+                echo json_encode(['success' => false, 'message' => 'Accès non autorisé.']);
+            }
+            break;
 
     }
 
@@ -90,7 +89,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" || $_SERVER["REQUEST_METHOD"] == "PUT")
     switch ($action) {
 
         case 'logOut':
-            
+
             $login->logOut();
             break;
         case 'getAllOptions':

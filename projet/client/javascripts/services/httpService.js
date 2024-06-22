@@ -71,18 +71,10 @@ function logOut(successCallback, errorCallback) {
     });
 }
 
-function addMoto(cc, hp, weight,name, successCallback, errorCallback) {
-    let data = {
-        action: "addMoto",
-        cc: cc,
-        hp: hp,
-        weight: weight,
-        name: name
-    };
-
+function addMoto(data, successCallback, errorCallback) {
     $.ajax({
         type: "POST",
-        url: BASE_URL + "server.php/addMoto",
+        url: BASE_URL + "server.php",
         contentType: "application/json",
         dataType: "JSON",
         data: JSON.stringify(data),

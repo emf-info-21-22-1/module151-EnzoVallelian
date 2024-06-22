@@ -1,15 +1,38 @@
-/**  {
-  margin:0px;
-  padding:0px;
-  border:0px;
-}*/
-
 body {
   background-color: #A0A0A0;
   text-align: center;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-#conteneur {
+.moto-container {
+  margin-top: 4rem;
+  padding: 2rem;
+}
+
+.moto-item {
+  border: 1px solid #ccc;
+  border-radius: 50px;
+  padding: 50px;
+  margin-bottom: 50px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.moto-details {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.moto-details:hover {
+  background-color: #0056b3;
+}
+
+.moto-form {
   background-color: white;
   width: 45em;
   height: auto;
@@ -19,20 +42,6 @@ body {
   border: 2px solid green;
   padding: 1em 2em;
   font-family: Verdana, Arial, serif;
-}
-
-@import url(https://fonts.googleapis.com/css?family=Roboto:300);
-
-.login-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
-}
-
-.register-page {
-  width: 360px;
-  padding: 8% 0 0;
-  margin: auto;
 }
 
 .form {
@@ -77,145 +86,4 @@ body {
 .form button:active,
 .form button:focus {
   background: lightskyblue;
-}
-
-.form .message {
-  margin: 15px 0 0;
-  color: #b3b3b3;
-  font-size: 12px;
-}
-
-.form .message a {
-  color: lightskyblue;
-  text-decoration: none;
-}
-
-.card {
-  box-sizing: border-box;
-  margin: 40%;
-  padding: 20%;
-  width: 190px;
-  height: 254px;
-  background: rgba(217, 217, 217, 0.58);
-  border: 1px solid white;
-  box-shadow: 12px 17px 51px rgba(0, 0, 0, 0.22);
-  backdrop-filter: blur(6px);
-  border-radius: 17px;
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.5s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  user-select: none;
-  font-weight: bolder;
-  color: black;
-}
-
-.card:hover {
-  border: 1px solid black;
-  transform: scale(1.05);
-}
-
-.card:active {
-  transform: scale(0.95) rotateZ(1.7deg);
-}
-
-.container {
-  position: relative;
-  z-index: 1;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-.container:before,
-.container:after {
-  content: "";
-  display: block;
-  clear: both;
-}
-
-.container .info {
-  margin: 50px auto;
-  text-align: center;
-}
-
-.container .info h1 {
-  margin: 0 0 15px;
-  padding: 0;
-  font-size: 36px;
-  font-weight: 300;
-  color: #1a1a1a;
-}
-
-.container .info span {
-  color: #4d4d4d;
-  font-size: 12px;
-}
-
-.container .info span a {
-  color: #000000;
-  text-decoration: none;
-}
-
-.container .info span .fa {
-  color: #EF3B3A;
-}
-
-body {
-
-  font-family: "Roboto", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-/* Stylisation des motos */
-.moto-item {
-  border: 50px solid #ccc;
-  border-radius: 50px;
-  padding: 50px;
-  margin-bottom: 50px;
-}
-
-/* Bouton pour chaque moto */
-.moto-item button {
-  background-color: #4CAF50;
-  color: white;
-  padding: 50px 50px;
-  border: none;
-  border-radius: 50px;
-  cursor: pointer;
-}
-
-/* Au survol du bouton */
-.moto-item button:hover {
-  background-color: #45a049;
-}
-.moto-item {
-  border: 1px solid #ccc;
-  border-radius: 50px;
-  padding: 50px;
-  margin-bottom: 50px;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-}
-
-.moto-item p {
-  margin: 50px 0;
-}
-
-.moto-details {
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.moto-details:hover {
-  background-color: #0056b3;
-}
-/* Styles pour le conteneur principal */
-.moto-container {
-  margin-top: 4rem; /* Ajouter un espacement en haut */
-  padding: 2rem; /* Ajouter un espacement interne */
 }
