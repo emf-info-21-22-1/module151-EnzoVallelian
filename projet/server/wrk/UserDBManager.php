@@ -1,56 +1,55 @@
 <?php
-include_once "Connexion.php";
+include_once "Connexion.php"; // Inclut le fichier Connexion.php une seule fois, qui doit contenir la classe Connexion
+
 class UserDBManager
 {
-    private $connexion;
-    private $session;
+    private $connexion; // Attribut pour la connexion à la base de données
+
+
     function __construct()
     {
-        $this->connexion = Connexion::getInstance();
-     
+        $this->connexion = Connexion::getInstance(); // Initialise la connexion à la base de données en utilisant le pattern singleton
     }
-
 
     public function createUser($username, $password)
     {
-        $json = "";
-        $query = "SELECT * FROM t_user WHERE username=:username";
-        $params = array("username" => $username);
-        $isUsernameTaken = $this->connexion->selectSingleQuery($query, $params);
+        $json = ""; // Variable pour stocker la réponse JSON
+        $query = "SELECT * FROM t_user WHERE username=:username"; // Requête SQL pour vérifier si le nom d'utilisateur existe déjà
+        $params = array("username" => $username); // Paramètres de la requête SQL
+        $isUsernameTaken = $this->connexion->selectSingleQuery($query, $params); // Exécute la requête et vérifie si le nom d'utilisateur est déjà pris
+
         if (!$isUsernameTaken) {
-            $query = "INSERT INTO t_user (username, password) VALUES (:username, :password)";
-            $password = htmlspecialchars($password);
-            $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-            $params = array('username' => htmlspecialchars($username), 'password' => $hashedPassword);
-            $this->connexion->executeQuery($query, $params);
-          
-            $pkUser = $this->connexion->getLastId('t_user');
+            // Si le nom d'utilisateur n'est pas pris, on insère un nouvel utilisateur
+            $query = "INSERT INTO t_user (username, password) VALUES (:username, :password)"; // Requête SQL d'insertion
+            $password = htmlspecialchars($password); // Échappe les caractères spéciaux dans le mot de passe
+            $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash le mot de passe
+            /*
+
+             */
+            $params = array('username' => htmlspecialchars($username), 'password' => $hashedPassword); // Paramètres de la requête SQL avec le mot de passe hashé
+            $this->connexion->executeQuery($query, $params); // Exécute la requête d'insertion
+
+            $pkUser = $this->connexion->getLastId('t_user'); // Récupère l'ID du dernier utilisateur inséré
             $response = array(
                 'success' => true,
                 'pk' => $pkUser,
                 'username' => $username,
                 'message' => 'compte creer'
-            );
-            http_response_code(200);
-            $json = json_encode($response, JSON_UNESCAPED_UNICODE);
+            ); // Prépare la réponse JSON en cas de succès
+
+            $json = json_encode($response, JSON_UNESCAPED_UNICODE); // Encode la réponse en JSON
         } else {
-            http_response_code(401);
+            // Si le nom d'utilisateur est déjà pris, prépare une réponse d'erreur
+            http_response_code(401); // Définit le code de réponse HTTP à 401 (Unauthorized)
             $response = array(
                 'success' => false,
                 'message' => "Ce nom d'utilisateur n'est pas disponible"
-            );
-            $json = json_encode($response, JSON_UNESCAPED_UNICODE);
+            ); // Prépare la réponse JSON en cas d'erreur
+            $json = json_encode($response, JSON_UNESCAPED_UNICODE); // Encode la réponse en JSON
         }
-        //  header('Content-Type: application/json; charset=utf-8');
-        echo $json;
-        return $response;
+
+        echo $json; // Affiche la réponse JSON
+        return $response; // Retourne la réponse (tableau associatif)
     }
-
-
-
 }
-
-
-
-
 ?>

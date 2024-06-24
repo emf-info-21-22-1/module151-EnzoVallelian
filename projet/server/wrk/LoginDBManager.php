@@ -18,10 +18,6 @@ class WrkLogin
         
     }
     
-   
-
-
-
     public function testLogin($username, $password)
     {
         $json = "";

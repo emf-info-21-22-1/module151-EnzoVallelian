@@ -57,6 +57,7 @@ function displayMotos(data) {
                 <p><strong>Puissance:</strong> ${moto.hp} hp</p>
                 <p><strong>Cylindrée:</strong> ${moto.cc} cc</p>
                 <p><strong>Poids:</strong> ${moto.weight} kg</p>
+                <br>
             `;
 
             motoContainer.appendChild(motoElement);
