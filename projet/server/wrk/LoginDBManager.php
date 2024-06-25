@@ -34,8 +34,12 @@ class WrkLogin
             $hashPassword = $user->getPassword();
 
             if (password_verify($password, $hashPassword)) {
-                // Le mot de passe est correct
-                // Autoriser l'accès ou effectuer d'autres actions nécessaires
+                /*
+                Fonction password_verify: Cette fonction est utilisée pour vérifier 
+                qu'un mot de passe fourni correspond à un hachage stocké. Elle prend deux arguments :
+                $password: Le mot de passe en clair que l'utilisateur a entré lors de la tentative de connexion.
+                $hashPassword: Le mot de passe haché récupéré de la base de données pour cet utilisateur.*/
+                
 
                 $response = array(
                     'success' => true,
