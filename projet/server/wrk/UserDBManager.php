@@ -13,6 +13,12 @@ class UserDBManager
 
     public function createUser($username, $password)
     {
+        if($username==null){
+         $response = array(
+                'success' => false,
+                'message' => "le nom d'utilisateur ne peux pas etre vide"
+            
+        }
         $json = ""; // Variable pour stocker la réponse JSON
         $query = "SELECT * FROM t_user WHERE username=:username"; // Requête SQL pour vérifier si le nom d'utilisateur existe déjà
         $params = array("username" => $username); // Paramètres de la requête SQL
